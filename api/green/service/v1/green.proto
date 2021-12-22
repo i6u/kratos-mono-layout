@@ -1,9 +1,0 @@
-syntax = "proto3";
-package green.service.v1;
-
-option go_package = "api/green/service/v1;v1";
-
-service Green { rpc Review(ReviewRequest) returns (ReviewResponse); }
-
-message ReviewRequest {}
-message ReviewResponse {}

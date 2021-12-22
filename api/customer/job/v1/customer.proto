@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package sentinel.job.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/i6u/kratos-multiple-module-layout/api/green/service/v1;v1";
+
+service Customer {
+  rpc CustomerStatus(CustomerStatusRequest) returns (CustomerStatusReply) {
+    option (google.api.http) = {
+      get : "/v1/status"
+    };
+  }
+}
+
+message CustomerStatusRequest {}
+message CustomerStatusReply { string message = 1; }

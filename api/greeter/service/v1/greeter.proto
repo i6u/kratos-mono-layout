@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package greeter.service.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/i6u/kratos-multiple-module-layout/api/greeter/service/v1;v1";
+
+service Greeter {
+  rpc SayHi(SayHiRequest) returns (SayHiReply) {
+    option (google.api.http) = {
+      get : "/v1/hi"
+    };
+  };
+}
+
+message SayHiRequest { string name = 1; }
+message SayHiReply { string message = 1; }
