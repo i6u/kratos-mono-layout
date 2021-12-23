@@ -9,7 +9,7 @@ option go_package = "github.com/i6u/kratos-multiple-module-layout/api/greeter/se
 service Greeter {
   rpc SayHi(SayHiRequest) returns (SayHiReply) {
     option (google.api.http) = {
-      get : "/v1/hi"
+      get : "/v1/hi/{name}"
     };
   };
 }

@@ -16,7 +16,7 @@
     "application/json"
   ],
   "paths": {
-    "/v1/hi": {
+    "/v1/hi/{name}": {
       "get": {
         "operationId": "Greeter_SayHi",
         "responses": {
@@ -36,8 +36,8 @@
         "parameters": [
           {
             "name": "name",
-            "in": "query",
-            "required": false,
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],

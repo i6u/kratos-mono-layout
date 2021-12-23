@@ -31,5 +31,5 @@ func (g *GreeterUseCase) SayHi(ctx context.Context, name string) string {
 	if err != nil {
 		return ""
 	}
-	return greeter.Name + " say hi"
+	return "Gutter " + greeter.Name + ": 'Say hi!'"
 }

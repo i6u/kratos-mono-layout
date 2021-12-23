@@ -23,13 +23,16 @@ type GreeterHTTPServer interface {
 
 func RegisterGreeterHTTPServer(s *http.Server, srv GreeterHTTPServer) {
 	r := s.Route("/")
-	r.GET("/v1/hi", _Greeter_SayHi0_HTTP_Handler(srv))
+	r.GET("/v1/hi/{name}", _Greeter_SayHi0_HTTP_Handler(srv))
 }
 
 func _Greeter_SayHi0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.Context) error {
 	return func(ctx http.Context) error {
 		var in SayHiRequest
 		if err := ctx.BindQuery(&in); err != nil {
+			return err
+		}
+		if err := ctx.BindVars(&in); err != nil {
 			return err
 		}
 		http.SetOperation(ctx, "/greeter.service.v1.Greeter/SayHi")
@@ -59,7 +62,7 @@ func NewGreeterHTTPClient(client *http.Client) GreeterHTTPClient {
 
 func (c *GreeterHTTPClientImpl) SayHi(ctx context.Context, in *SayHiRequest, opts ...http.CallOption) (*SayHiReply, error) {
 	var out SayHiReply
-	pattern := "/v1/hi"
+	pattern := "/v1/hi/{name}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation("/greeter.service.v1.Greeter/SayHi"))
 	opts = append(opts, http.PathTemplate(pattern))
