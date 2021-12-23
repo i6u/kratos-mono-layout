@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package customer.service.error.v1;
+
+import "errors/errors.proto";
+
+option go_package = "github.com/i6u/kratos-multiple-module-layout/api/customer/service/v1;v1";
+
+enum CustomerErrorReason {
+  option (errors.default_code) = 500;
+
+  NOT_FOUND = 0 [ (errors.code) = 404 ];
+}
