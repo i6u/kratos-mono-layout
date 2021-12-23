@@ -1,5 +1,15 @@
 package server
 
-import "github.com/google/wire"
+import (
+	"github.com/go-kratos/kratos/v2/registry"
+	"github.com/google/wire"
 
-var ProviderSet = wire.NewSet(NewHTTPServer, NewGRPCServer)
+	"github.com/i6u/kratos-multiple-module-layout/app/greeter/service/internal/conf"
+	"github.com/i6u/kratos-multiple-module-layout/pkg/util/reg"
+)
+
+var ProviderSet = wire.NewSet(NewRegistrar, NewHTTPServer, NewGRPCServer)
+
+func NewRegistrar(conf *conf.Registry) (registry.Registrar, func()) {
+	return reg.NewRegistrar(conf.Endpoint, conf.Timeout.AsDuration())
+}

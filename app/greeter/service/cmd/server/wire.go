@@ -15,6 +15,6 @@ import (
 	"github.com/i6u/kratos-multiple-module-layout/app/greeter/service/internal/service"
 )
 
-func initApp(*conf.Server, *conf.Data, log.Logger) (*kratos.App, func(), error) {
+func initApp(*conf.Registry, *conf.Server, *conf.Data, log.Logger) (*kratos.App, func(), error) {
 	panic(wire.Build(server.ProviderSet, service.ProviderSet, biz.ProviderSet, data.ProviderSet, newApp))
 }

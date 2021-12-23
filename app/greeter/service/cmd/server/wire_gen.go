@@ -15,9 +15,9 @@ import (
 	"github.com/i6u/kratos-multiple-module-layout/app/greeter/service/internal/service"
 )
 
-// Injectors from wire.go
+// Injectors from wire.go:
 
-func initApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*kratos.App, func(), error) {
+func initApp(registry *conf.Registry, confServer *conf.Server, confData *conf.Data, logger log.Logger) (*kratos.App, func(), error) {
 	dataData, cleanup, err := data.NewData(logger, confData)
 	if err != nil {
 		return nil, nil, err
@@ -27,8 +27,10 @@ func initApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	greeterService := service.NewGreeterService(logger, greeterUseCase)
 	httpServer := server.NewHTTPServer(logger, confServer, greeterService)
 	grpcServer := server.NewGRPCServer(logger, confServer, greeterService)
-	app := newApp(logger, httpServer, grpcServer)
+	registrar, cleanup2 := server.NewRegistrar(registry)
+	app := newApp(logger, httpServer, grpcServer, registrar)
 	return app, func() {
+		cleanup2()
 		cleanup()
 	}, nil
 }

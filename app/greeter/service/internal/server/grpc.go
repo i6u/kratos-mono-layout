@@ -14,7 +14,7 @@ func NewGRPCServer(logger log.Logger, c *conf.Server, greeter *service.GreeterSe
 	return srv.NewGRPCServer(
 		logger,
 		c.Grpc.Network,
-		c.Grpc.Addr,
+		c.Grpc.Address,
 		c.Grpc.Timeout.AsDuration(),
 		func(srv *grpc.Server) {
 			apiV1.RegisterGreeterServer(srv, greeter)

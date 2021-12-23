@@ -1,24 +1,25 @@
 syntax = "proto3";
-package green.service;
+package greeter.service;
 
 import "google/protobuf/duration.proto";
 
-option go_package = "app/green/service/internal/conf;conf";
+option go_package = "app/greeter/service/internal/conf;conf";
 
 message Bootstrap {
   Server server = 1;
   Data data = 2;
+  Registry registry = 3;
 }
 
 message Server {
   message HTTP {
     string network = 1;
-    string addr = 2;
+    string address = 2;
     google.protobuf.Duration timeout = 3;
   }
   message GRPC {
     string network = 1;
-    string addr = 2;
+    string address = 2;
     google.protobuf.Duration timeout = 3;
   }
   HTTP http = 1;
@@ -32,10 +33,15 @@ message Data {
   }
   message Redis {
     string network = 1;
-    string addr = 2;
+    string address = 2;
     google.protobuf.Duration read_timeout = 3;
     google.protobuf.Duration write_timeout = 4;
   }
   Database database = 1;
   Redis redis = 2;
+}
+
+message Registry {
+  string endpoint = 1;
+  google.protobuf.Duration timeout = 2;
 }

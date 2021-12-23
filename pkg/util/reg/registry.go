@@ -15,9 +15,9 @@ import (
 	"google.golang.org/grpc"
 )
 
-func initEtcdClient(endpoints []string, timeout time.Duration) (*etcdClient.Client, func()) {
+func initEtcdClient(endpoint string, timeout time.Duration) (*etcdClient.Client, func()) {
 	cli, err := etcdClient.New(etcdClient.Config{
-		Endpoints:   endpoints,
+		Endpoints:   []string{endpoint},
 		DialTimeout: timeout,
 	})
 	if err != nil {
@@ -29,13 +29,13 @@ func initEtcdClient(endpoints []string, timeout time.Duration) (*etcdClient.Clie
 	return cli, cleanup
 }
 
-func NewRegistrar(endpoints []string, timeout time.Duration) (registry.Registrar, func()) {
-	cli, cleanup := initEtcdClient(endpoints, timeout)
+func NewRegistrar(endpoint string, timeout time.Duration) (registry.Registrar, func()) {
+	cli, cleanup := initEtcdClient(endpoint, timeout)
 	return etcd.New(cli), cleanup
 }
 
-func NewDiscovery(endpoints []string, timeout time.Duration) (registry.Discovery, func()) {
-	cli, cleanup := initEtcdClient(endpoints, timeout)
+func NewDiscovery(endpoint string, timeout time.Duration) (registry.Discovery, func()) {
+	cli, cleanup := initEtcdClient(endpoint, timeout)
 	return etcd.New(cli), cleanup
 }
 

@@ -14,7 +14,7 @@ func NewHTTPServer(logger log.Logger, c *conf.Server, customer *service.Customer
 	return srv.NewHTTPServer(
 		logger,
 		c.Http.Network,
-		c.Http.Addr,
+		c.Http.Address,
 		c.Grpc.Timeout.AsDuration(),
 		func(srv *http.Server) {
 			apiV1.RegisterCustomerHTTPServer(srv, customer)

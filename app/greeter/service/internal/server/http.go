@@ -14,7 +14,7 @@ func NewHTTPServer(logger log.Logger, c *conf.Server, greeter *service.GreeterSe
 	return srv.NewHTTPServer(
 		logger,
 		c.Http.Network,
-		c.Http.Addr,
+		c.Http.Address,
 		c.Grpc.Timeout.AsDuration(),
 		func(srv *http.Server) {
 			apiV1.RegisterGreeterHTTPServer(srv, greeter)

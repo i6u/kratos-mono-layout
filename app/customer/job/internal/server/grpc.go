@@ -14,7 +14,7 @@ func NewGRPCServer(logger log.Logger, c *conf.Server, customer *service.Customer
 	return srv.NewGRPCServer(
 		logger,
 		c.Grpc.Network,
-		c.Grpc.Addr,
+		c.Grpc.Address,
 		c.Grpc.Timeout.AsDuration(),
 		func(srv *grpc.Server) {
 			apiV1.RegisterCustomerServer(srv, customer)
