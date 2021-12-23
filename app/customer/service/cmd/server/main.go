@@ -12,7 +12,7 @@ import (
 	"github.com/go-kratos/kratos/v2/registry"
 	"github.com/go-kratos/kratos/v2/transport/grpc"
 	"github.com/go-kratos/kratos/v2/transport/http"
-	"github.com/i6u/kratos-multiple-module-layout/app/customer/service/internal/conf"
+	"github.com/i6u/kratos-mono-layout/app/customer/service/internal/conf"
 )
 
 // go build -ldflags "-X main.Version=x.y.z"

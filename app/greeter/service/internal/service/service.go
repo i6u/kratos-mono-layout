@@ -3,8 +3,8 @@ package service
 import (
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/google/wire"
-	apiV1 "github.com/i6u/kratos-multiple-module-layout/api/greeter/service/v1"
-	"github.com/i6u/kratos-multiple-module-layout/app/greeter/service/internal/biz"
+	apiV1 "github.com/i6u/kratos-mono-layout/api/greeter/service/v1"
+	"github.com/i6u/kratos-mono-layout/app/greeter/service/internal/biz"
 )
 
 var ProviderSet = wire.NewSet(NewGreeterService)

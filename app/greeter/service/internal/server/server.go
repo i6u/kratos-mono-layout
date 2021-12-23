@@ -4,8 +4,8 @@ import (
 	"github.com/go-kratos/kratos/v2/registry"
 	"github.com/google/wire"
 
-	"github.com/i6u/kratos-multiple-module-layout/app/greeter/service/internal/conf"
-	"github.com/i6u/kratos-multiple-module-layout/pkg/util/reg"
+	"github.com/i6u/kratos-mono-layout/app/greeter/service/internal/conf"
+	"github.com/i6u/kratos-mono-layout/pkg/util/reg"
 )
 
 var ProviderSet = wire.NewSet(NewRegistrar, NewHTTPServer, NewGRPCServer)

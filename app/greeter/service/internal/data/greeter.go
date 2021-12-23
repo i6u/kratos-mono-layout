@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/go-kratos/kratos/v2/log"
-	"github.com/i6u/kratos-multiple-module-layout/app/greeter/service/internal/biz"
+	"github.com/i6u/kratos-mono-layout/app/greeter/service/internal/biz"
 )
 
 type greeterRepo struct {

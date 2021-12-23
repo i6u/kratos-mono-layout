@@ -1,4 +1,4 @@
-module github.com/i6u/kratos-multiple-module-layout
+module github.com/i6u/kratos-mono-layout
 
 go 1.16
 

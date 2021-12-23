@@ -4,10 +4,10 @@ import (
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/registry"
 	"github.com/google/wire"
-	"github.com/i6u/kratos-multiple-module-layout/app/customer/service/internal/conf"
-	"github.com/i6u/kratos-multiple-module-layout/pkg/util/reg"
+	"github.com/i6u/kratos-mono-layout/app/customer/service/internal/conf"
+	"github.com/i6u/kratos-mono-layout/pkg/util/reg"
 
-	greeterV1 "github.com/i6u/kratos-multiple-module-layout/api/greeter/service/v1"
+	greeterV1 "github.com/i6u/kratos-mono-layout/api/greeter/service/v1"
 )
 
 var ProviderSet = wire.NewSet(NewData, NewCustomerRepo, NewDiscovery, NewGreeterClient)

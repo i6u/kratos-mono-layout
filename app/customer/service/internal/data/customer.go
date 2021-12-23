@@ -4,9 +4,9 @@ import (
 	"context"
 
 	"github.com/go-kratos/kratos/v2/log"
-	"github.com/i6u/kratos-multiple-module-layout/app/customer/service/internal/biz"
+	"github.com/i6u/kratos-mono-layout/app/customer/service/internal/biz"
 
-	greeterV1 "github.com/i6u/kratos-multiple-module-layout/api/greeter/service/v1"
+	greeterV1 "github.com/i6u/kratos-mono-layout/api/greeter/service/v1"
 )
 
 type customerRepo struct {

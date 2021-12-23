@@ -4,7 +4,7 @@ package customer.service.v1;
 
 import "google/api/annotations.proto";
 
-option go_package = "github.com/i6u/kratos-multiple-module-layout/api/customer/service/v1;v1";
+option go_package = "github.com/i6u/kratos-mono-layout/api/customer/service/v1;v1";
 
 service Customer {
   rpc Consume(ConsumeRequest) returns (ConsumeReply) {

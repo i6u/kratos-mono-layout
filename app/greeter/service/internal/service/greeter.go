@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	apiV1 "github.com/i6u/kratos-multiple-module-layout/api/greeter/service/v1"
+	apiV1 "github.com/i6u/kratos-mono-layout/api/greeter/service/v1"
 )
 
 func (g *GreeterService) SayHi(ctx context.Context, req *apiV1.SayHiRequest) (*apiV1.SayHiReply, error) {

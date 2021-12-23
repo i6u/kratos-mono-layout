@@ -3,10 +3,10 @@ package server
 import (
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/transport/http"
-	apiV1 "github.com/i6u/kratos-multiple-module-layout/api/customer/service/v1"
-	"github.com/i6u/kratos-multiple-module-layout/app/customer/service/internal/conf"
-	"github.com/i6u/kratos-multiple-module-layout/app/customer/service/internal/service"
-	"github.com/i6u/kratos-multiple-module-layout/pkg/util/srv"
+	apiV1 "github.com/i6u/kratos-mono-layout/api/customer/service/v1"
+	"github.com/i6u/kratos-mono-layout/app/customer/service/internal/conf"
+	"github.com/i6u/kratos-mono-layout/app/customer/service/internal/service"
+	"github.com/i6u/kratos-mono-layout/pkg/util/srv"
 )
 
 // NewHTTPServer new a HTTP server.
