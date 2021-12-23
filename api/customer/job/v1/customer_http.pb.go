@@ -18,35 +18,35 @@ var _ = binding.EncodeURL
 const _ = http.SupportPackageIsVersion1
 
 type CustomerHTTPServer interface {
-	CustomerStatus(context.Context, *CustomerStatusRequest) (*CustomerStatusReply, error)
+	Consume(context.Context, *ConsumeRequest) (*ConsumeReply, error)
 }
 
 func RegisterCustomerHTTPServer(s *http.Server, srv CustomerHTTPServer) {
 	r := s.Route("/")
-	r.GET("/v1/status", _Customer_CustomerStatus0_HTTP_Handler(srv))
+	r.GET("/v1/consume", _Customer_Consume0_HTTP_Handler(srv))
 }
 
-func _Customer_CustomerStatus0_HTTP_Handler(srv CustomerHTTPServer) func(ctx http.Context) error {
+func _Customer_Consume0_HTTP_Handler(srv CustomerHTTPServer) func(ctx http.Context) error {
 	return func(ctx http.Context) error {
-		var in CustomerStatusRequest
+		var in ConsumeRequest
 		if err := ctx.BindQuery(&in); err != nil {
 			return err
 		}
-		http.SetOperation(ctx, "/sentinel.job.v1.Customer/CustomerStatus")
+		http.SetOperation(ctx, "/sentinel.job.v1.Customer/Consume")
 		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.CustomerStatus(ctx, req.(*CustomerStatusRequest))
+			return srv.Consume(ctx, req.(*ConsumeRequest))
 		})
 		out, err := h(ctx, &in)
 		if err != nil {
 			return err
 		}
-		reply := out.(*CustomerStatusReply)
+		reply := out.(*ConsumeReply)
 		return ctx.Result(200, reply)
 	}
 }
 
 type CustomerHTTPClient interface {
-	CustomerStatus(ctx context.Context, req *CustomerStatusRequest, opts ...http.CallOption) (rsp *CustomerStatusReply, err error)
+	Consume(ctx context.Context, req *ConsumeRequest, opts ...http.CallOption) (rsp *ConsumeReply, err error)
 }
 
 type CustomerHTTPClientImpl struct {
@@ -57,11 +57,11 @@ func NewCustomerHTTPClient(client *http.Client) CustomerHTTPClient {
 	return &CustomerHTTPClientImpl{client}
 }
 
-func (c *CustomerHTTPClientImpl) CustomerStatus(ctx context.Context, in *CustomerStatusRequest, opts ...http.CallOption) (*CustomerStatusReply, error) {
-	var out CustomerStatusReply
-	pattern := "/v1/status"
+func (c *CustomerHTTPClientImpl) Consume(ctx context.Context, in *ConsumeRequest, opts ...http.CallOption) (*ConsumeReply, error) {
+	var out ConsumeReply
+	pattern := "/v1/consume"
 	path := binding.EncodeURL(pattern, in, true)
-	opts = append(opts, http.Operation("/sentinel.job.v1.Customer/CustomerStatus"))
+	opts = append(opts, http.Operation("/sentinel.job.v1.Customer/Consume"))
 	opts = append(opts, http.PathTemplate(pattern))
 	err := c.cc.Invoke(ctx, "GET", path, nil, &out, opts...)
 	if err != nil {

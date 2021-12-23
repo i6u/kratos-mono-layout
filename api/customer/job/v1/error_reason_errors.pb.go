@@ -11,14 +11,14 @@ import (
 // is compatible with the kratos package it is being compiled against.
 const _ = errors.SupportPackageIsVersion1
 
-func IsContentNotFound(err error) bool {
+func IsJobNotFound(err error) bool {
 	if err == nil {
 		return false
 	}
 	e := errors.FromError(err)
-	return e.Reason == ErrorReason_CONTENT_NOT_FOUND.String() && e.Code == 404
+	return e.Reason == ErrorReason_JOB_NOT_FOUND.String() && e.Code == 404
 }
 
-func ErrorContentNotFound(format string, args ...interface{}) *errors.Error {
-	return errors.New(404, ErrorReason_CONTENT_NOT_FOUND.String(), fmt.Sprintf(format, args...))
+func ErrorJobNotFound(format string, args ...interface{}) *errors.Error {
+	return errors.New(404, ErrorReason_JOB_NOT_FOUND.String(), fmt.Sprintf(format, args...))
 }

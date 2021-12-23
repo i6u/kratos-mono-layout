@@ -17,7 +17,7 @@ type GreeterService struct {
 
 func NewGreeterService(logger log.Logger, guc *biz.GreeterUseCase) *GreeterService {
 	return &GreeterService{
-		log: log.NewHelper(log.With(logger, "moudle", "service/greeter")),
+		log: log.NewHelper(log.With(logger, "greeter", "service/greeter")),
 		guc: guc,
 	}
 }

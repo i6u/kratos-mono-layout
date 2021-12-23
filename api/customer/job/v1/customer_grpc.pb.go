@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CustomerClient interface {
-	CustomerStatus(ctx context.Context, in *CustomerStatusRequest, opts ...grpc.CallOption) (*CustomerStatusReply, error)
+	Consume(ctx context.Context, in *ConsumeRequest, opts ...grpc.CallOption) (*ConsumeReply, error)
 }
 
 type customerClient struct {
@@ -33,9 +33,9 @@ func NewCustomerClient(cc grpc.ClientConnInterface) CustomerClient {
 	return &customerClient{cc}
 }
 
-func (c *customerClient) CustomerStatus(ctx context.Context, in *CustomerStatusRequest, opts ...grpc.CallOption) (*CustomerStatusReply, error) {
-	out := new(CustomerStatusReply)
-	err := c.cc.Invoke(ctx, "/sentinel.job.v1.Customer/CustomerStatus", in, out, opts...)
+func (c *customerClient) Consume(ctx context.Context, in *ConsumeRequest, opts ...grpc.CallOption) (*ConsumeReply, error) {
+	out := new(ConsumeReply)
+	err := c.cc.Invoke(ctx, "/sentinel.job.v1.Customer/Consume", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +46,7 @@ func (c *customerClient) CustomerStatus(ctx context.Context, in *CustomerStatusR
 // All implementations must embed UnimplementedCustomerServer
 // for forward compatibility
 type CustomerServer interface {
-	CustomerStatus(context.Context, *CustomerStatusRequest) (*CustomerStatusReply, error)
+	Consume(context.Context, *ConsumeRequest) (*ConsumeReply, error)
 	mustEmbedUnimplementedCustomerServer()
 }
 
@@ -54,8 +54,8 @@ type CustomerServer interface {
 type UnimplementedCustomerServer struct {
 }
 
-func (UnimplementedCustomerServer) CustomerStatus(context.Context, *CustomerStatusRequest) (*CustomerStatusReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CustomerStatus not implemented")
+func (UnimplementedCustomerServer) Consume(context.Context, *ConsumeRequest) (*ConsumeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Consume not implemented")
 }
 func (UnimplementedCustomerServer) mustEmbedUnimplementedCustomerServer() {}
 
@@ -70,20 +70,20 @@ func RegisterCustomerServer(s grpc.ServiceRegistrar, srv CustomerServer) {
 	s.RegisterService(&Customer_ServiceDesc, srv)
 }
 
-func _Customer_CustomerStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CustomerStatusRequest)
+func _Customer_Consume_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConsumeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CustomerServer).CustomerStatus(ctx, in)
+		return srv.(CustomerServer).Consume(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/sentinel.job.v1.Customer/CustomerStatus",
+		FullMethod: "/sentinel.job.v1.Customer/Consume",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomerServer).CustomerStatus(ctx, req.(*CustomerStatusRequest))
+		return srv.(CustomerServer).Consume(ctx, req.(*ConsumeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -96,8 +96,8 @@ var Customer_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CustomerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CustomerStatus",
-			Handler:    _Customer_CustomerStatus_Handler,
+			MethodName: "Consume",
+			Handler:    _Customer_Consume_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -16,14 +16,14 @@
     "application/json"
   ],
   "paths": {
-    "/v1/status": {
+    "/v1/consume": {
       "get": {
-        "operationId": "Customer_CustomerStatus",
+        "operationId": "Customer_Consume",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1CustomerStatusReply"
+              "$ref": "#/definitions/v1ConsumeReply"
             }
           },
           "default": {
@@ -33,6 +33,18 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
         "tags": [
           "Customer"
         ]
@@ -67,7 +79,7 @@
         }
       }
     },
-    "v1CustomerStatusReply": {
+    "v1ConsumeReply": {
       "type": "object",
       "properties": {
         "message": {

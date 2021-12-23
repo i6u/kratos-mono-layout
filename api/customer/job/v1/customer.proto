@@ -4,15 +4,15 @@ package sentinel.job.v1;
 
 import "google/api/annotations.proto";
 
-option go_package = "github.com/i6u/kratos-multiple-module-layout/api/green/service/v1;v1";
+option go_package = "github.com/i6u/kratos-multiple-module-layout/api/customer/job/v1;v1";
 
 service Customer {
-  rpc CustomerStatus(CustomerStatusRequest) returns (CustomerStatusReply) {
+  rpc Consume(ConsumeRequest) returns (ConsumeReply) {
     option (google.api.http) = {
-      get : "/v1/status"
+      get : "/v1/consume"
     };
   }
 }
 
-message CustomerStatusRequest {}
-message CustomerStatusReply { string message = 1; }
+message ConsumeRequest { repeated string name = 1; }
+message ConsumeReply { string message = 1; }
