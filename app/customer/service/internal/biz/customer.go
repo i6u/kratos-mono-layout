@@ -27,6 +27,9 @@ func NewCustomerUseCase(logger log.Logger, repo CustomerRepo) *CustomerUseCase {
 }
 
 func (c *CustomerUseCase) Consume(ctx context.Context, name string) string {
-	result, _ := c.repo.Consume(ctx, name)
+	result, err := c.repo.Consume(ctx, name)
+	if err != nil {
+		c.log.Error(err)
+	}
 	return result
 }
