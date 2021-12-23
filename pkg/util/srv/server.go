@@ -4,20 +4,19 @@ import (
 	"time"
 
 	"github.com/go-kratos/kratos/v2/log"
+	"github.com/go-kratos/kratos/v2/middleware/logging"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
 	"github.com/go-kratos/kratos/v2/transport/grpc"
-	_grpc "github.com/go-kratos/kratos/v2/transport/grpc"
 	"github.com/go-kratos/kratos/v2/transport/http"
-	_http "github.com/go-kratos/kratos/v2/transport/http"
 )
 
 // new grpc server
 
-func NewGRPCServer(_ log.Logger, network string, addr string, timeout time.Duration, rs func(g *_grpc.Server)) *_grpc.Server {
+func NewGRPCServer(logger log.Logger, network string, addr string, timeout time.Duration, rs func(g *grpc.Server)) *grpc.Server {
 	var opts = []grpc.ServerOption{
 		grpc.Middleware(
 			recovery.Recovery(),
-			//logging.Server(logger),
+			logging.Server(logger),
 			// tracing.Server(),
 		),
 	}
@@ -37,11 +36,11 @@ func NewGRPCServer(_ log.Logger, network string, addr string, timeout time.Durat
 
 // new http server
 
-func NewHTTPServer(_ log.Logger, network string, addr string, timeout time.Duration, rs func(g *_http.Server)) *_http.Server {
+func NewHTTPServer(logger log.Logger, network string, addr string, timeout time.Duration, rs func(g *http.Server)) *http.Server {
 	var opts = []http.ServerOption{
 		http.Middleware(
 			recovery.Recovery(),
-			// logging.Server(logger),
+			logging.Server(logger),
 		),
 	}
 	if network != "" {

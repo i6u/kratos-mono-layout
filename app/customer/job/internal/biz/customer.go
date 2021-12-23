@@ -11,7 +11,7 @@ type Customer struct {
 }
 
 type CustomerRepo interface {
-	Consume(ctx context.Context, names []string) (string, error)
+	Consume(ctx context.Context, name string) (string, error)
 }
 
 type CustomerUseCase struct {
@@ -26,7 +26,7 @@ func NewCustomerUseCase(logger log.Logger, repo CustomerRepo) *CustomerUseCase {
 	}
 }
 
-func (c *CustomerUseCase) Consume(ctx context.Context, names []string) string {
-	result, _ := c.repo.Consume(ctx, names)
+func (c *CustomerUseCase) Consume(ctx context.Context, name string) string {
+	result, _ := c.repo.Consume(ctx, name)
 	return result
 }

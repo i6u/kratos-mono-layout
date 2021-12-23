@@ -2,6 +2,7 @@ package biz
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/go-kratos/kratos/v2/log"
 )
@@ -11,7 +12,7 @@ type Greeter struct {
 }
 
 type GreeterRepo interface {
-	GetGreeter(ctx context.Context, name string) (*Greeter, error)
+	GetGreeter(ctx context.Context) (*Greeter, error)
 }
 
 type GreeterUseCase struct {
@@ -27,9 +28,9 @@ func NewGreeterUseCase(logger log.Logger, repo GreeterRepo) *GreeterUseCase {
 }
 
 func (g *GreeterUseCase) SayHi(ctx context.Context, name string) string {
-	greeter, err := g.repo.GetGreeter(ctx, name)
+	greeter, err := g.repo.GetGreeter(ctx)
 	if err != nil {
-		return ""
+		return "not found"
 	}
-	return "Gutter " + greeter.Name + ": 'Say hi!'"
+	return fmt.Sprintf("%s say : 'Hi %s!'", greeter.Name, name)
 }

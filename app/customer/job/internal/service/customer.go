@@ -7,8 +7,7 @@ import (
 )
 
 func (c *CustomerService) Consume(ctx context.Context, req *apiV1.ConsumeRequest) (*apiV1.ConsumeReply, error) {
-	names := req.Name
-	msg := c.cuc.Consume(ctx, names)
+	msg := c.cuc.Consume(ctx, req.Name)
 	return &apiV1.ConsumeReply{
 		Message: msg,
 	}, nil

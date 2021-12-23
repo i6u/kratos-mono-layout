@@ -14,5 +14,5 @@ service Customer {
   }
 }
 
-message ConsumeRequest { repeated string name = 1; }
+message ConsumeRequest { string name = 1; }
 message ConsumeReply { string message = 1; }

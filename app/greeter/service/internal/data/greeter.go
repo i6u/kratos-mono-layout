@@ -19,6 +19,6 @@ func NewGreeterRepo(logger log.Logger, data *Data) biz.GreeterRepo {
 	}
 }
 
-func (g *greeterRepo) GetGreeter(ctx context.Context, name string) (*biz.Greeter, error) {
-	return &biz.Greeter{Name: name}, nil
+func (g *greeterRepo) GetGreeter(ctx context.Context) (*biz.Greeter, error) {
+	return &biz.Greeter{Name: "Greeter"}, nil
 }
