@@ -1,3 +1,13 @@
+.PHONY: init
+# init env
+init:
+	go get -u google.golang.org/protobuf/cmd/protoc-gen-go
+	go get -u google.golang.org/grpc/cmd/protoc-gen-go-grpc
+	go get -u github.com/go-kratos/kratos/cmd/protoc-gen-go-http/v2
+	go get -u github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2
+	go get -u github.com/google/wire/cmd/wire
+	go get -u github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2
+
 .PHONY: api
 # generate api
 api:
