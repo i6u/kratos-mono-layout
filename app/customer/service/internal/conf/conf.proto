@@ -1,5 +1,5 @@
 syntax = "proto3";
-package customer.job;
+package customer.service;
 
 import "google/protobuf/duration.proto";
 
